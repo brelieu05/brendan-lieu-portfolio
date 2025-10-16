@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset and base styles */
 * {
   margin: 0;
   box-sizing: border-box;
