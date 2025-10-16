@@ -1,4 +1,4 @@
---Readme document for *YOUR NAME*, *YOUR_EMAIL@uci.edu*--
+--Readme document for Brendan Lieu, blieu2@uci.edu--
 
 A reminder on academic integrity, as described in the syllabus.
 
@@ -82,5 +82,4 @@ No classmates or other individuals were consulted for this assignment. All work 
 Steps to run:
 
 1. Navigate to the portfolio directory: `cd portfolio`
-2. Install dependencies: `npm install`
-3. Run development server: `npm run dev`
+2. Run development server: `npm run dev` or `npm run preview` 
