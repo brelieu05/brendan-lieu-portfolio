@@ -1,0 +1,19 @@
+{
+  "name": "brendan-lieu-portfolio",
+  "version": "1.0.0",
+  "description": "Brendan Lieu's Personal Portfolio Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["portfolio", "website", "static"],
+  "author": "Brendan Lieu",
+  "license": "MIT"
+}
