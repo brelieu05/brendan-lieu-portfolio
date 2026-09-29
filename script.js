@@ -27,7 +27,7 @@ function toggleMobileMenu() {
   const isHidden = menu.classList.contains('hidden');
   
   menu.classList.toggle('hidden');
-  button.setAttribute('aria-expanded', !isHidden);
+  button.setAttribute('aria-expanded', String(isHidden));
 }
 
 function closeMobileMenu() {
