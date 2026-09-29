@@ -1,50 +1,34 @@
-// Role rotation functionality
-const roles = [
-  "Full Stack Developer",
-  "UCI Student", 
-  "Redbull Connoisseur",
-  "Taekwondo Hobbyist"
-];
-let roleIndex = 0;
-const roleElement = document.getElementById('role-text');
-
-function updateRole() {
-  roleElement.textContent = roles[roleIndex];
-  roleElement.classList.add('animate-fade-up');
-  setTimeout(() => {
-    roleElement.classList.remove('animate-fade-up');
-  }, 500);
-  roleIndex = (roleIndex + 1) % roles.length;
-}
-
-// Start role rotation
-setInterval(updateRole, 2500);
-
-// Mobile menu functionality
-function toggleMobileMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const button = document.querySelector('.mobile-menu-btn');
-  const isHidden = menu.classList.contains('hidden');
-  
-  menu.classList.toggle('hidden');
-  button.setAttribute('aria-expanded', String(isHidden));
-}
-
+const menu = document.getElementById('mobile-menu');
+const menuButton = document.querySelector('.mobile-menu-btn');
 function closeMobileMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const button = document.querySelector('.mobile-menu-btn');
-  
-  menu.classList.add('hidden');
-  button.setAttribute('aria-expanded', 'false');
+  menu.hidden = true;
+  menuButton.setAttribute('aria-expanded', 'false');
 }
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', function(event) {
-  const menu = document.getElementById('mobile-menu');
-  const menuBtn = document.querySelector('.mobile-menu-btn');
-  
-  if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
-    menu.classList.add('hidden');
-    menuBtn.setAttribute('aria-expanded', 'false');
+menuButton.addEventListener('click', () => {
+  menu.hidden = !menu.hidden;
+  menuButton.setAttribute('aria-expanded', String(!menu.hidden));
+});
+menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
+document.addEventListener('click', event => {
+  if (!menu.contains(event.target) && !menuButton.contains(event.target)) closeMobileMenu();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && !menu.hidden) {
+    closeMobileMenu();
+    menuButton.focus();
   }
 });
+window.matchMedia('(min-width: 768px)').addEventListener('change', closeMobileMenu);
+
+// Restore the original rotating personal descriptors.
+const roles = ['UCI Student', 'Red Bull Connoisseur', 'Taekwondo Hobbyist'];
+const roleElement = document.getElementById('role-text');
+let roleIndex = 0;
+setInterval(() => {
+  if (document.hidden || !roleElement) return;
+  roleIndex = (roleIndex + 1) % roles.length;
+  roleElement.textContent = roles[roleIndex];
+  roleElement.classList.remove('descriptor-enter');
+  void roleElement.offsetWidth;
+  roleElement.classList.add('descriptor-enter');
+}, 2500);
